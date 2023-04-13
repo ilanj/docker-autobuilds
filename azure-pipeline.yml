@@ -16,12 +16,13 @@ jobs:
   steps:
   - checkout: self
 
+  - script: docker login -u $(username) -p $(password)
+    displayName: 'Docker Login'
+
   - script: docker build -t hw:v1 .
     displayName: 'Build Docker Image'
     workingDirectory: .
 
-  - script: docker login -u $(username) -p $(password) ilanchezhian/docker-autobuilds
-    displayName: 'Docker Login'
   
 #   - script: docker push <your_docker_image_name>:<your_tag>
 #     displayName: 'Docker Push'
