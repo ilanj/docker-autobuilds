@@ -20,8 +20,8 @@ jobs:
     displayName: 'Build Docker Image'
     workingDirectory: .
 
-#   - script: docker login -u <your_docker_registry_username> -p $(DOCKER_REGISTRY_PASSWORD) <your_docker_registry>
-#     displayName: 'Docker Login'
+  - script: docker login -u $(username) -p $(password) <your_docker_registry>
+    displayName: 'Docker Login'
   
 #   - script: docker push <your_docker_image_name>:<your_tag>
 #     displayName: 'Docker Push'
