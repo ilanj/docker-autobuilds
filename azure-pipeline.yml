@@ -1,0 +1,27 @@
+# azure-pipelines.yml
+
+trigger:
+  branches:
+    exclude:
+      - '*'
+
+pr: none
+
+jobs:
+- job: BuildAndPushDockerImage
+  displayName: 'Build and Push Docker Image'
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - checkout: self
+
+  - script: docker build -t hw:v1 .
+    displayName: 'Build Docker Image'
+    workingDirectory: .
+
+#   - script: docker login -u <your_docker_registry_username> -p $(DOCKER_REGISTRY_PASSWORD) <your_docker_registry>
+#     displayName: 'Docker Login'
+  
+#   - script: docker push <your_docker_image_name>:<your_tag>
+#     displayName: 'Docker Push'
