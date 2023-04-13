@@ -16,13 +16,15 @@ jobs:
   steps:
   - checkout: self
 
+  - script: docker build -t hw:$(Build.BuildId) .
+    displayName: 'Build Docker Image'
+    # workingDirectory: .
+
   - script: docker login -u $(username) -p $(password)
     displayName: 'Docker Login'
-
-  - script: docker build -t hw:v1 .
-    displayName: 'Build Docker Image'
-    workingDirectory: .
-
+    
+  - script: docker tag hw:$(Build.BuildId) $(username)/hw:$(Build.BuildId)
+    displayName: 'Tag Docker Image'
   
-#   - script: docker push <your_docker_image_name>:<your_tag>
-#     displayName: 'Docker Push'
+  - script: docker push $(username)/hw:$(Build.BuildId)
+    displayName: 'Push Docker Image to Docker Hub'
