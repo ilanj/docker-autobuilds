@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def response():
-    return "Hello from flask as app1 after editing"
+    return "Hello from flask as app1 after editing."
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5510)
